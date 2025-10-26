@@ -1,6 +1,6 @@
 # Kubectl Demo
 
-##🧩 Nginx
+## Nginx 🧩
 
 This has 3 parts
 
