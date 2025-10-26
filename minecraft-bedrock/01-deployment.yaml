@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-bedrock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft-bedrock
+  template:
+    metadata:
+      labels:
+        app: minecraft-bedrock
+    spec:
+      containers:
+      - name: minecraft-bedrock
+        image: itzg/minecraft-bedrock-server:latest
+        ports:
+        - containerPort: 19132
+          protocol: UDP
+        env:
+        - name: EULA
+          value: "TRUE"
+        volumeMounts:
+        - name: bedrock-data
+          mountPath: /data
+      volumes:
+      - name: bedrock-data
+        persistentVolumeClaim:
+          claimName: bedrock-pvc
