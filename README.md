@@ -2,14 +2,28 @@
 
 ## Nginx 🧩
 
-This has 3 parts
-
-- [Deployment: 01-deployment.yaml](./nginx/01-deployment.yaml)
-- [ClusterIP Service: 02-service.yaml](./nginx/02-service.yaml)
-- [Ingress (entry point from outside the cluster): 03-ingress.yaml](./nginx/03-ingress.yaml)
+- [nginx.yaml](./nginx/nginx.yaml)
 
 ## Minecraft 🧱
 
-- [Deployment: 01-deployment.yaml](./minecraft/01-deployment.yaml)
-- [Volume: 02-volume.yaml](./minecraft/02-volume.yaml)
-- [Service: 03-sevice.yaml](./minecraft/03-sevice.yaml)
+- [minecraft-bedrock.yaml](./minecraft-bedrock/minecraft-bedrock.yaml)
+
+## Portainer
+
+https://node1:30443
+
+- The NodePort exposes it on ports 30443 (HTTPS) and 30000 (HTTP) on all cluster nodes.
+- Data is stored in a PVC (portainer-data) so it persists across restarts
+
+To deploy:
+1. Putty to the master node 
+2. Clone https://github.com/carlpaton/kubectl-demo
+3. cd `portainer`
+4. Run kubectl deployment
+
+```
+kubectl apply -f portainer.yaml
+kubectl get pods -n portainer
+```
+
+- [portainer.yaml](./portainer/portainer.yaml)
